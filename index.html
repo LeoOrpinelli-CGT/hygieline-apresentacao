@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cogtive × Hygieline — Apresentação Exclusiva</title>
+<link rel="icon" type="image/png" href="Cogtive_Symbol_Off_White.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cogtive-blue: #0066FF;
+  --cogtive-blue-dark: #0050CC;
+  --cogtive-blue-light: #3385FF;
+  --cogtive-blue-glow: rgba(0, 102, 255, 0.3);
+  --dark: #0A0E1A;
+  --dark-card: #111827;
+  --dark-surface: #1A2035;
+  --text-primary: #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --accent-red: #EF4444;
+  --accent-green: #10B981;
+  --accent-orange: #F59E0B;
+  --accent-teal: #14B8A6;
+  --accent-purple: #8B5CF6;
+  --accent-magenta: #EC4899;
+  --accent-yellow: #FBBF24;
+  --accent-cyan: #06B6D4;
+  --border: rgba(255,255,255,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--cogtive-blue) var(--dark); }
+body { font-family: 'Outfit', sans-serif; background: var(--dark); color: var(--text-primary); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body.locked { overflow: hidden; }
+
+/* LOGIN */
+.login-overlay { position: fixed; inset: 0; background: radial-gradient(circle at 50% 30%, #0F1E3D 0%, var(--dark) 70%); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.login-card { width: 100%; max-width: 440px; background: rgba(17,24,39,0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 3rem 2.5rem; box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,102,255,0.1); position: relative; overflow: hidden; }
+.login-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--cogtive-blue), var(--accent-teal)); }
+.login-logo { height: 40px; width: auto; max-width: 70%; margin-bottom: 2rem; display: block; object-fit: contain; }
+svg.login-logo { height: 40px; margin-bottom: 2rem; display: block; width: auto; }
+.login-card h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 0.4rem; }
+.login-card .login-sub { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.5; }
+.login-form { display: flex; flex-direction: column; gap: 1rem; }
+.login-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.login-field label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); font-weight: 600; }
+.login-field input { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 0.85rem 1rem; color: var(--text-primary); font-family: inherit; font-size: 0.95rem; transition: all 0.2s ease; }
+.login-field input:focus { outline: none; border-color: var(--cogtive-blue); background: rgba(0,102,255,0.05); }
+.login-submit { background: linear-gradient(135deg, var(--cogtive-blue), var(--cogtive-blue-dark)); color: white; border: none; padding: 1rem; border-radius: 10px; font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 0.5rem; transition: all 0.25s ease; letter-spacing: 0.3px; }
+.login-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,102,255,0.35); }
+.login-error { color: var(--accent-red); font-size: 0.85rem; margin-top: 0.5rem; min-height: 1.2em; }
+.login-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); }
+
+/* ADMIN */
+.admin-overlay { position: fixed; inset: 0; background: rgba(5,8,15,0.92); backdrop-filter: blur(8px); z-index: 10100; display: none; align-items: center; justify-content: center; padding: 2rem; }
+.admin-overlay.visible { display: flex; }
+.admin-card { width: 100%; max-width: 500px; background: var(--dark-card); border: 1px solid var(--cogtive-blue); border-radius: 20px; padding: 2.5rem; position: relative; box-shadow: 0 0 80px rgba(0,102,255,0.2); }
+.admin-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.6rem; }
+.admin-card h3 .tag { font-size: 0.6rem; padding: 0.25rem 0.6rem; background: var(--cogtive-blue); color: white; border-radius: 100px; letter-spacing: 1.5px; font-weight: 700; }
+.admin-card .admin-sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+.admin-close { position: absolute; top: 1rem; right: 1rem; background: transparent; border: 1px solid rgba(255,255,255,0.1); width: 32px; height: 32px; border-radius: 50%; color: var(--text-muted); cursor: pointer; }
+.admin-section { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.06); }
+.admin-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--cogtive-blue-light); font-weight: 600; margin-bottom: 0.6rem; }
+.admin-row { display: flex; gap: 0.6rem; align-items: center; }
+.admin-row input { flex: 1; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 0.7rem 0.9rem; color: var(--text-primary); font-family: inherit; font-size: 0.9rem; }
+.admin-btn { background: var(--cogtive-blue); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 8px; font-family: inherit; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+.admin-btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-secondary); }
+.admin-status { font-size: 0.8rem; margin-top: 0.6rem; min-height: 1.2em; }
+.admin-status.ok { color: var(--accent-green); }
+.admin-status.err { color: var(--accent-red); }
+.admin-current { display: flex; justify-content: space-between; font-size: 0.82rem; background: rgba(0,102,255,0.06); padding: 0.7rem 0.9rem; border-radius: 8px; border: 1px solid rgba(0,102,255,0.15); margin-bottom: 0.8rem; }
+.admin-current span:first-child { color: var(--text-muted); }
+.admin-current span:last-child { font-family: 'JetBrains Mono', monospace; color: var(--cogtive-blue-light); font-weight: 600; }
+.admin-help { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.8rem; line-height: 1.5; }
+.admin-help code { font-family: 'JetBrains Mono', monospace; background: rgba(0,102,255,0.1); padding: 0.1rem 0.35rem; border-radius: 4px; color: var(--cogtive-blue-light); }
+
+/* APP */
+#app.hidden { display: none; }
+.progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--cogtive-blue), var(--accent-teal)); z-index: 900; transition: width 0.1s linear; width: 0%; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 800; padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between; backdrop-filter: blur(20px); background: rgba(10,14,26,0.8); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.nav-logo { height: 28px; width: auto; display: block; object-fit: contain; }
+svg.nav-logo { height: 28px; width: auto; display: block; }
+.nav-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 500; }
+.nav-logout { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); background: transparent; border: 1px solid rgba(255,255,255,0.08); padding: 0.4rem 0.8rem; border-radius: 100px; cursor: pointer; font-family: inherit; }
+
+/* SECTIONS */
+section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 6rem 3rem; position: relative; }
+.section-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+.section-label { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--cogtive-blue-light); font-weight: 600; margin-bottom: 1rem; }
+.section-label::before { content: ''; width: 30px; height: 2px; background: var(--cogtive-blue); }
+.section-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 1rem; }
+.section-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 720px; line-height: 1.7; font-weight: 300; }
+
+/* ANIMATIONS */
+.reveal { opacity: 0; transform: translateY(60px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+.reveal-delay-5 { transition-delay: 0.75s; }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -30%; right: -20%; width: 800px; height: 800px; background: radial-gradient(circle, var(--cogtive-blue-glow) 0%, transparent 70%); animation: pulse-glow 6s ease-in-out infinite; }
+@keyframes pulse-glow { 0%,100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.1); } }
+.hero-content { max-width: 1200px; margin: 0 auto; width: 100%; position: relative; z-index: 2; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(0,102,255,0.1); border: 1px solid rgba(0,102,255,0.3); padding: 0.5rem 1.2rem; border-radius: 100px; font-size: 0.85rem; color: var(--cogtive-blue-light); font-weight: 500; margin-bottom: 2rem; }
+.hero-badge .dot { width: 8px; height: 8px; background: var(--cogtive-blue); border-radius: 50%; animation: dot-pulse 2s ease-in-out infinite; }
+@keyframes dot-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+.hero h1 { font-size: clamp(2.8rem,6vw,5rem); font-weight: 800; line-height: 1.05; letter-spacing: -2px; margin-bottom: 1.5rem; }
+.hero h1 .highlight { background: linear-gradient(135deg, var(--cogtive-blue), var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: 1.3rem; color: var(--text-secondary); max-width: 720px; line-height: 1.6; font-weight: 300; }
+.hero-metrics { display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+.hero-metric .number { font-family: 'JetBrains Mono', monospace; font-size: 2.8rem; font-weight: 700; color: var(--cogtive-blue-light); line-height: 1; }
+.hero-metric .number .unit { font-size: 1.4rem; color: var(--text-muted); font-weight: 400; }
+.hero-metric .label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* PARTICLES */
+.particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.particle { position: absolute; background: rgba(0,102,255,0.55); border-radius: 50%; animation: floatUp 22s infinite linear; }
+@keyframes floatUp { 0% { transform: translateY(100vh) translateX(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) translateX(40px); opacity: 0; } }
+
+/* FLOW */
+.flow-container { margin-top: 3rem; position: relative; }
+.flow-steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.8rem; position: relative; z-index: 1; }
+.flow-step { text-align: center; opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); padding: 0.3rem; }
+.flow-step.active { opacity: 1; transform: translateY(0); }
+.flow-step.flow-no-cogtive { opacity: 0; }
+.flow-step.flow-no-cogtive.active { opacity: 0.45; }
+.flow-icon { width: 72px; height: 72px; margin: 0 auto 0.7rem; background: var(--dark-surface); border: 2px solid rgba(255,255,255,0.06); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: all 0.4s ease; }
+.flow-step.has-cogtive .flow-icon { border-color: var(--cogtive-blue); background: rgba(0,102,255,0.08); box-shadow: 0 0 20px rgba(0,102,255,0.12); }
+.flow-step-name { font-weight: 600; font-size: 0.78rem; margin-bottom: 0.25rem; line-height: 1.2; }
+.flow-step-detail { font-size: 0.66rem; color: var(--text-muted); line-height: 1.3; }
+.cogtive-wrapper { position: relative; border: 2px solid var(--cogtive-blue); border-radius: 24px; padding: 2.5rem 1rem 1.5rem; margin-top: 0.5rem; background: rgba(0,102,255,0.03); box-shadow: 0 0 40px rgba(0,102,255,0.08); }
+.cogtive-wrapper-label { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--dark); padding: 0.3rem 1.5rem; border: 2px solid var(--cogtive-blue); border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--cogtive-blue-light); white-space: nowrap; display: flex; align-items: center; gap: 0.5rem; }
+.cogtive-wrapper-modules { display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(0,102,255,0.15); flex-wrap: wrap; }
+.cogtive-wrapper-module { display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem 1rem; background: rgba(0,102,255,0.1); border: 1px solid rgba(0,102,255,0.25); border-radius: 100px; font-size: 0.75rem; font-weight: 600; color: var(--cogtive-blue-light); }
+
+/* PROBLEM */
+.problem-section { background: linear-gradient(180deg, var(--dark) 0%, #0F1629 100%); }
+.pain-grid { margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.pain-card { background: var(--dark-surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 18px; padding: 2rem 1.7rem; position: relative; overflow: hidden; transition: all 0.4s ease; }
+.pain-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent-red); opacity: 0.7; }
+.pain-card:hover { transform: translateY(-5px); border-color: rgba(239,68,68,0.25); box-shadow: 0 18px 50px rgba(0,0,0,0.3); }
+.pain-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-red); font-weight: 700; letter-spacing: 2px; margin-bottom: 0.5rem; }
+.pain-card h4 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; line-height: 1.25; }
+.pain-card .pain-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.55; margin-bottom: 1rem; }
+.pain-card .pain-impact { font-size: 0.76rem; color: var(--text-muted); font-style: italic; padding: 0.7rem 0.9rem; background: rgba(239,68,68,0.05); border-radius: 8px; border-left: 2px solid var(--accent-red); line-height: 1.5; }
+.pain-highlight { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); color: #FCA5A5; padding: 0.2rem 0.5rem; border-radius: 6px; font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; }
+.pain-exec { margin-top: 3rem; padding: 2rem 2.5rem; background: linear-gradient(135deg, rgba(239,68,68,0.08), rgba(245,158,11,0.06)); border: 1px solid rgba(239,68,68,0.15); border-radius: 18px; display: flex; align-items: flex-start; gap: 1.5rem; }
+.pain-exec .ex-icon { width: 48px; height: 48px; background: rgba(239,68,68,0.18); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.pain-exec h5 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent-red); font-weight: 700; margin-bottom: 0.4rem; }
+.pain-exec p { font-size: 1rem; color: var(--text-primary); line-height: 1.55; font-weight: 500; }
+.pain-exec p strong { color: #FCA5A5; }
+
+/* SOLUTION */
+.cogtive-entry { background: linear-gradient(180deg, #0F1629 0%, var(--dark) 100%); }
+.modules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.module-card { background: var(--dark-surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: all 0.5s ease; }
+.module-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--cogtive-blue), var(--accent-teal)); opacity: 0; transition: opacity 0.4s ease; }
+.module-card:hover::before { opacity: 1; }
+.module-card:hover { border-color: rgba(0,102,255,0.2); transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.module-number { font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 800; color: rgba(255,255,255,0.04); position: absolute; top: 1rem; right: 1.5rem; }
+.module-icon { width: 56px; height: 56px; background: rgba(0,102,255,0.1); border: 1px solid rgba(0,102,255,0.2); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.5rem; }
+.module-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+.module-card .module-sub { font-size: 0.75rem; color: var(--cogtive-blue-light); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.module-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; }
+.module-features { display: flex; flex-direction: column; gap: 0.6rem; }
+.module-feature { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4; }
+.module-feature .check { width: 20px; height: 20px; background: rgba(16,185,129,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; color: var(--accent-green); flex-shrink: 0; margin-top: 0.1rem; }
+
+/* PAINEL COMPLETO (Torre) */
+.tower-section { background: linear-gradient(180deg, var(--dark) 0%, #0A1628 100%); }
+.tower-mockup { margin-top: 3rem; background: var(--dark-surface); border: 1px solid rgba(0,102,255,0.2); border-radius: 20px; padding: 2rem; box-shadow: 0 0 60px rgba(0,102,255,0.08); }
+
+/* TIMELINE */
+.timeline-detail { margin-top: 3rem; }
+.timeline-visual { background: var(--dark-surface); border-radius: 20px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.06); }
+.timeline-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+.timeline-header h4 { font-size: 1rem; font-weight: 600; }
+.timeline-legend { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.timeline-legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; color: var(--text-muted); }
+.timeline-legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+.timeline-bars { display: flex; flex-direction: column; gap: 0.5rem; }
+.timeline-row { display: flex; align-items: center; gap: 1rem; height: 40px; }
+.timeline-row-label { width: 130px; font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); text-align: right; flex-shrink: 0; }
+.timeline-row-bar { flex: 1; height: 28px; background: rgba(255,255,255,0.03); border-radius: 6px; overflow: hidden; display: flex; }
+.tl-segment { height: 100%; transition: width 1.5s cubic-bezier(0.16,1,0.3,1); display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-family: 'JetBrains Mono', monospace; font-weight: 600; color: white; width: 0%; }
+.tl-producing { background: var(--accent-green); }
+.tl-stopped { background: var(--accent-red); }
+.tl-setup { background: var(--accent-orange); }
+.tl-micro { background: var(--accent-purple); }
+.timeline-alert { margin-top: 1.5rem; padding: 1rem 1.5rem; background: rgba(0,102,255,0.08); border: 1px solid rgba(0,102,255,0.2); border-radius: 12px; display: flex; align-items: center; gap: 1rem; font-size: 0.85rem; color: var(--text-secondary); }
+.timeline-alert strong { color: var(--cogtive-blue-light); }
+
+/* OEE */
+.oee-dashboard { margin-top: 3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.oee-gauge { background: var(--dark-surface); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255,255,255,0.06); text-align: center; }
+.gauge-container { width: 160px; height: 160px; margin: 0 auto 1.5rem; position: relative; }
+.gauge-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.gauge-bg { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 10; }
+.gauge-fill { fill: none; stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset 2s cubic-bezier(0.16,1,0.3,1); }
+.gauge-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 700; }
+.gauge-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
+.gauge-sublabel { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.3rem; }
+.oee-formula { margin-top: 2.5rem; padding: 1.5rem 2rem; background: rgba(0,102,255,0.05); border: 1px solid rgba(0,102,255,0.2); border-radius: 14px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--text-secondary); }
+.oee-formula .eq { color: var(--cogtive-blue-light); font-weight: 600; font-size: 1.1rem; }
+
+/* AI VISION */
+.aivision-section { background: linear-gradient(180deg, var(--dark) 0%, #0A1628 100%); }
+.av-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.3); border-radius: 100px; font-size: 0.72rem; font-weight: 600; color: var(--accent-purple); letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 1rem; }
+.av-grid { margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.av-photo-wrap { position: relative; border-radius: 18px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/9; background: var(--dark-surface); }
+.av-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.av-photo-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,14,26,0.85) 100%); pointer-events: none; }
+.av-tag { position: absolute; top: 1rem; left: 1rem; padding: 0.35rem 0.8rem; background: rgba(0,102,255,0.9); color: white; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 100px; z-index: 2; }
+.av-caption { position: absolute; bottom: 1rem; left: 1rem; right: 1rem; z-index: 2; }
+.av-caption h5 { font-size: 0.95rem; font-weight: 700; color: white; margin-bottom: 0.2rem; }
+.av-caption p { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+.av-rule { margin-top: 2rem; padding: 1.5rem 2rem; background: rgba(139,92,246,0.07); border: 1px solid rgba(139,92,246,0.2); border-radius: 14px; display: flex; gap: 1.3rem; align-items: center; }
+.av-rule-icon { font-size: 1.6rem; width: 52px; height: 52px; background: rgba(139,92,246,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.av-rule h5 { font-size: 0.92rem; font-weight: 700; color: var(--accent-purple); margin-bottom: 0.2rem; }
+.av-rule p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
+.av-rule p strong { color: var(--text-primary); }
+.av-capabilities { margin-top: 2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.av-cap { padding: 1.2rem 1.3rem; background: var(--dark-surface); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; }
+.av-cap .cap-icon { width: 36px; height: 36px; background: rgba(139,92,246,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 0.8rem; }
+.av-cap h6 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.3rem; }
+.av-cap p { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* ROI */
+.roi-section { background: linear-gradient(180deg, var(--dark) 0%, #0A1628 50%, var(--dark) 100%); }
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; align-items: start; }
+.roi-pillars { display: flex; flex-direction: column; gap: 1rem; }
+.roi-pillar { display: flex; align-items: center; gap: 1.2rem; padding: 1.3rem 1.5rem; background: var(--dark-surface); border-radius: 14px; border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s ease; }
+.roi-pillar:hover { border-color: rgba(0,102,255,0.2); transform: translateX(4px); }
+.roi-pillar .p-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(0,102,255,0.12); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+.roi-pillar h5 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.2rem; }
+.roi-pillar p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45; }
+.roi-total { background: linear-gradient(135deg, rgba(0,102,255,0.15), rgba(20,184,166,0.15)); border: 1px solid rgba(0,102,255,0.3); padding: 2.5rem; border-radius: 20px; text-align: center; position: sticky; top: 100px; }
+.roi-total .r-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2.5px; margin-bottom: 0.8rem; font-weight: 600; }
+.roi-total .r-headline { font-size: 1.3rem; font-weight: 700; line-height: 1.3; margin-bottom: 1.5rem; }
+.roi-total .r-result { padding: 0.8rem 1.2rem; background: linear-gradient(135deg, var(--cogtive-blue), var(--accent-teal)); border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: white; }
+.roi-total .r-note { font-size: 0.77rem; color: var(--text-muted); line-height: 1.5; margin-top: 1.3rem; font-style: italic; }
+
+/* JOURNEY */
+.journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; }
+.journey-step { padding: 2rem 1.5rem; position: relative; background: var(--dark-surface); border: 1px solid rgba(255,255,255,0.06); }
+.journey-step:first-child { border-radius: 20px 0 0 20px; }
+.journey-step:last-child { border-radius: 0 20px 20px 0; }
+.journey-step:not(:last-child) { border-right: none; }
+.journey-step-number { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--cogtive-blue); font-weight: 700; margin-bottom: 0.5rem; letter-spacing: 1.5px; }
+.journey-step h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+.journey-step .time-badge { display: inline-block; font-size: 0.68rem; padding: 0.2rem 0.7rem; background: rgba(0,102,255,0.1); border-radius: 100px; color: var(--cogtive-blue-light); font-weight: 600; margin-bottom: 0.8rem; }
+.journey-step p { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.55; }
+.journey-arrow { position: absolute; right: -12px; top: 50%; transform: translateY(-50%); z-index: 2; width: 24px; height: 24px; background: var(--cogtive-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; }
+
+/* CTA */
+.cta-section { text-align: center; position: relative; overflow: hidden; padding: 8rem 3rem; background: linear-gradient(180deg, var(--dark) 0%, #091230 100%); }
+.cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 700px; height: 700px; background: radial-gradient(circle, var(--cogtive-blue-glow) 0%, transparent 65%); animation: pulse-glow 6s ease-in-out infinite; }
+.cta-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
+.cta-section h2 { font-size: clamp(2.3rem,5vw,3.8rem); font-weight: 800; letter-spacing: -2px; line-height: 1.05; margin-bottom: 1.2rem; }
+.cta-section h2 .highlight { background: linear-gradient(135deg, var(--cogtive-blue-light), var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cta-section p { font-size: 1.15rem; color: var(--text-secondary); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.6; font-weight: 300; }
+.cta-button { display: inline-flex; align-items: center; gap: 0.7rem; padding: 1.3rem 2.8rem; background: linear-gradient(135deg, var(--cogtive-blue), var(--cogtive-blue-dark)); color: white; text-decoration: none; border-radius: 100px; font-weight: 700; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 15px 40px rgba(0,102,255,0.3); }
+.cta-button:hover { transform: translateY(-3px); box-shadow: 0 20px 55px rgba(0,102,255,0.5); }
+.cta-button .wa-icon { width: 22px; height: 22px; }
+.cta-logos { display: flex; align-items: center; justify-content: center; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); flex-wrap: wrap; }
+.cta-logos img.logo-cogtive, svg.logo-cogtive { height: 38px; opacity: 0.9; width: auto; display: block; }
+.cta-logos .logo-x { font-size: 1.4rem; color: var(--text-muted); }
+.cta-logos .logo-client-wrap { background: white; padding: 0.8rem 1.4rem; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); display: flex; align-items: center; }
+.cta-logos .logo-client-wrap img, .cta-logos .logo-client-wrap svg { height: 48px; display: block; width: auto; }
+.cta-logos .lead-logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.5rem; color: #0066FF; letter-spacing: 2px; }
+.cta-sig { margin-top: 2rem; font-size: 0.78rem; color: var(--text-muted); letter-spacing: 1px; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  nav { padding: 1rem 2rem; }
+  section { padding: 5rem 2rem; }
+  .modules-grid, .pain-grid, .oee-dashboard, .av-capabilities { grid-template-columns: repeat(2, 1fr); }
+  .av-grid { grid-template-columns: 1fr; }
+  .roi-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .journey-steps { grid-template-columns: 1fr 1fr; }
+  .journey-step:nth-child(2) { border-radius: 0 20px 0 0; border-right: 1px solid rgba(255,255,255,0.06); }
+  .journey-step:nth-child(3) { border-radius: 0 0 0 20px; }
+  .journey-step:nth-child(1) { border-radius: 20px 0 0 0; }
+  .flow-steps { grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+}
+@media (max-width: 640px) {
+  nav { padding: 0.8rem 1.2rem; }
+  .nav-label { display: none; }
+  section { padding: 4rem 1.2rem; }
+  .modules-grid, .pain-grid, .oee-dashboard, .av-capabilities { grid-template-columns: 1fr; }
+  .journey-steps { grid-template-columns: 1fr; }
+  .journey-step { border-radius: 0 !important; border: 1px solid rgba(255,255,255,0.06) !important; margin-bottom: 0.5rem; }
+  .journey-arrow { display: none; }
+  .flow-steps { grid-template-columns: repeat(2, 1fr); }
+  .login-card { padding: 2.2rem 1.5rem; }
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- LOGIN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-card">
+    <img class="login-logo" src="Cogtive_Logo_Off_White.png" alt="Cogtive"/>
+    <h2>Apresentação Exclusiva</h2>
+    <p class="login-sub">Conteúdo preparado para <strong style="color:var(--text-primary)">Samuel — Hygieline</strong>. Use as credenciais enviadas para acessar.</p>
+    <form class="login-form" id="loginForm" autocomplete="off">
+      <div class="login-field">
+        <label>E-mail</label>
+        <input type="email" id="loginEmail" placeholder="seu@email.com" required autocomplete="off"/>
+      </div>
+      <div class="login-field">
+        <label>Senha</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="off"/>
+      </div>
+      <button type="submit" class="login-submit">Entrar</button>
+      <div class="login-error" id="loginError"></div>
+    </form>
+    <div class="login-footer">
+      <span>Acesso restrito</span>
+      <span>Cogtive · 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-card">
+    <button class="admin-close" id="adminClose">×</button>
+    <h3>Painel Admin <span class="tag">Cogtive</span></h3>
+    <p class="admin-sub">Controle de acesso. Requer master password.</p>
+    <div id="adminGate">
+      <div class="admin-section" style="border-top:none;padding-top:0;">
+        <div class="admin-label">Master Password</div>
+        <div class="admin-row">
+          <input type="password" id="adminMaster" placeholder="Digite a senha master"/>
+          <button class="admin-btn" id="adminUnlock">Desbloquear</button>
+        </div>
+        <div class="admin-status err" id="adminGateStatus"></div>
+      </div>
+    </div>
+    <div id="adminPanel" style="display:none">
+      <div class="admin-section" style="border-top:none;padding-top:0;">
+        <div class="admin-label">Status atual</div>
+        <div class="admin-current"><span>E-mail autorizado</span><span>samuel@hygieline.com.br</span></div>
+        <div class="admin-current"><span>Senha ativa</span><span id="adminCurrentPwd">••••••••</span></div>
+      </div>
+      <div class="admin-section">
+        <div class="admin-label">Trocar senha do lead</div>
+        <div class="admin-row">
+          <input type="text" id="adminNewPwd" placeholder="Nova senha (mín. 4 caracteres)"/>
+          <button class="admin-btn" id="adminSavePwd">Trocar</button>
+        </div>
+        <div class="admin-status" id="adminStatus"></div>
+        <p class="admin-help">Persistido em localStorage neste navegador. Atalho: <code>Ctrl + Shift + A</code>.</p>
+      </div>
+      <div class="admin-section">
+        <div class="admin-label">Ações</div>
+        <div class="admin-row" style="flex-wrap:wrap;gap:0.5rem;">
+          <button class="admin-btn ghost" id="adminReset">Resetar p/ inicial</button>
+          <button class="admin-btn ghost" id="adminReveal">Revelar senha</button>
+          <button class="admin-btn ghost" id="adminLogout">Deslogar lead</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="particles" id="particles"></div>
+
+  <nav>
+    <img class="nav-logo" src="Cogtive_Logo_Off_White.png" alt="Cogtive"/>
+    <span class="nav-label">Hygieline · Maio 2026</span>
+    <button class="nav-logout" id="navLogout" onclick="logoutLead()">Sair</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge reveal"><span class="dot"></span> Apresentação preparada para Samuel · Hygieline · Maio 2026</div>
+      <h1 class="reveal reveal-delay-1">
+        OEE em 55%.<br/>
+        <span class="highlight">+15 pontos</span> valem R$ 19 mil/mês.
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Samuel, retomando a conversa de onde paramos: a proposta dos 4 equipamentos continua de pé, e os números que
+        você mesmo desenhou — <strong style="color:var(--text-primary)">55% para 70% de OEE</strong> — saem do
+        papel no momento em que o apontamento deixa de ser manual e a operação ganha
+        <strong style="color:var(--text-primary)">Pareto, performance e gestão à vista em tempo real</strong>.
+      </p>
+      <div class="hero-metrics reveal reveal-delay-3">
+        <div class="hero-metric">
+          <div class="number"><span class="count-up" data-target="4">0</span></div>
+          <div class="label">Equipamentos monitorados</div>
+        </div>
+        <div class="hero-metric">
+          <div class="number"><span class="count-up" data-target="100">0</span><span class="unit"> un/min</span></div>
+          <div class="label">Produção nominal</div>
+        </div>
+        <div class="hero-metric">
+          <div class="number">+<span class="count-up" data-target="15">0</span><span class="unit"> pp</span></div>
+          <div class="label">Meta de OEE</div>
+        </div>
+        <div class="hero-metric">
+          <div class="number">R$ <span class="count-up" data-target="19">0</span><span class="unit"> mil/mês</span></div>
+          <div class="label">Ganho estimado</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOW -->
+  <section id="flow">
+    <div class="section-inner">
+      <div class="section-label reveal">01 — O processo da Hygieline</div>
+      <h2 class="section-title reveal reveal-delay-1">Da matéria-prima ao produto de higiene infantil — com o chão de fábrica visível.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        A Hygieline opera em ciclo contínuo de alta cadência (100 un/min, 12 h/dia). Cada minuto parado
+        que ninguém viu já é receita perdida. A cobertura Cogtive entra do envase à expedição — onde o dado vira decisão.
+      </p>
+
+      <div class="flow-container reveal reveal-delay-3" id="flowContainer">
+        <div class="flow-steps" style="margin-bottom:1rem;">
+          <div class="flow-step flow-no-cogtive" data-delay="0">
+            <div class="flow-icon">🧻</div>
+            <div class="flow-step-name">Matéria-prima</div>
+            <div class="flow-step-detail">Bobinas, polpa, insumos</div>
+          </div>
+          <div class="flow-step flow-no-cogtive" data-delay="100">
+            <div class="flow-icon">🔧</div>
+            <div class="flow-step-name">Setup / Troca de SKU</div>
+            <div class="flow-step-detail">Preparação do equipamento</div>
+          </div>
+        </div>
+        <div class="cogtive-wrapper">
+          <div class="cogtive-wrapper-label">
+            <span style="color:var(--cogtive-blue-light);">●</span> Cobertura Cogtive — onde o dado é decisão
+          </div>
+          <div class="flow-steps">
+            <div class="flow-step has-cogtive" data-delay="300">
+              <div class="flow-icon">⚙️</div>
+              <div class="flow-step-name">Conversão</div>
+              <div class="flow-step-detail" style="color:var(--cogtive-blue-light);font-weight:600;">4 equipamentos</div>
+            </div>
+            <div class="flow-step has-cogtive" data-delay="420">
+              <div class="flow-icon">📦</div>
+              <div class="flow-step-name">Envase / Embalagem</div>
+              <div class="flow-step-detail">Apontamento automático</div>
+            </div>
+            <div class="flow-step has-cogtive" data-delay="540">
+              <div class="flow-icon">🔍</div>
+              <div class="flow-step-name">Inspeção</div>
+              <div class="flow-step-detail">Qualidade por OP</div>
+            </div>
+            <div class="flow-step has-cogtive" data-delay="660">
+              <div class="flow-icon">📊</div>
+              <div class="flow-step-name">Gestão à Vista</div>
+              <div class="flow-step-detail">Painel para chão e gestão</div>
+            </div>
+            <div class="flow-step has-cogtive" data-delay="780">
+              <div class="flow-icon">🚚</div>
+              <div class="flow-step-name">Expedição</div>
+              <div class="flow-step-detail">Entrega por cliente</div>
+            </div>
+          </div>
+          <div class="cogtive-wrapper-modules">
+            <div class="cogtive-wrapper-module"><span>📊</span> OEE Tempo Real</div>
+            <div class="cogtive-wrapper-module"><span>✍️</span> Apontamento Automático</div>
+            <div class="cogtive-wrapper-module"><span>📉</span> Pareto de Ocorrências</div>
+            <div class="cogtive-wrapper-module"><span>📺</span> Gestão à Vista</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem-section" id="problem">
+    <div class="section-inner">
+      <div class="section-label reveal">02 — O que está em cima da mesa</div>
+      <h2 class="section-title reveal reveal-delay-1">
+        OEE de <span style="color:var(--accent-red);">55%</span>, sem <span style="color:var(--accent-orange);">apontamento automático</span> e
+        sem <span style="color:var(--accent-yellow);">Pareto</span>.
+      </h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Samuel, na proposta que rodamos com você o cenário era claro: 4 equipamentos de alta cadência, produção
+        nominal de 100 un/min, 12 horas por dia — e um OEE rodando em 55%. Cada ponto percentual ali é dinheiro real.
+        Hoje, os três pontos que continuam segurando a operação são:
+      </p>
+
+      <div class="pain-grid">
+        <div class="pain-card reveal reveal-delay-1">
+          <div class="pain-num">DOR 01 — DADO</div>
+          <h4>Apontamento manual segura o número</h4>
+          <div class="pain-desc">
+            O apontamento de produção e de paradas hoje passa pela mão do operador. Resultado: <span class="pain-highlight">o número chega tarde</span>,
+            chega incompleto, e quando vai consolidar o OEE, parte da realidade já não está mais lá.
+          </div>
+          <div class="pain-impact">
+            <strong>Impacto:</strong> OEE de 55% pode estar mascarando perdas ainda maiores — você decide com o dado pela metade.
+          </div>
+        </div>
+
+        <div class="pain-card reveal reveal-delay-2" style="border-top:3px solid var(--accent-orange);">
+          <div class="pain-num">DOR 02 — VISÃO</div>
+          <h4>Sem Pareto, sem alvo</h4>
+          <div class="pain-desc">
+            Sem o <span class="pain-highlight">Pareto das principais ocorrências</span>, você não sabe o que atacar primeiro:
+            é setup? é microparada? é falha de equipamento? é mix? Cada turno tem um suspeito diferente — e nenhuma ação ganha tração.
+          </div>
+          <div class="pain-impact">
+            <strong>Impacto:</strong> ações dispersas, sem priorização, e o OEE estaciona em 55%.
+          </div>
+        </div>
+
+        <div class="pain-card reveal reveal-delay-3" style="border-top:3px solid var(--accent-yellow);">
+          <div class="pain-num">DOR 03 — RITMO</div>
+          <h4>Chão de fábrica sem espelho</h4>
+          <div class="pain-desc">
+            Falta a <span class="pain-highlight">gestão à vista</span> para o time da operação: meta do turno,
+            o que foi produzido, o que parou, onde está o gargalo. Quem está na máquina opera no escuro — e a correção só vem do escritório, com atraso.
+          </div>
+          <div class="pain-impact">
+            <strong>Impacto:</strong> ciclo de melhoria longo. Problema do turno A só vira ação no turno C.
+          </div>
+        </div>
+      </div>
+
+      <div class="pain-exec reveal reveal-delay-3">
+        <div class="ex-icon">🎯</div>
+        <div>
+          <h5>Leitura executiva — por que esses 3 pontos juntos travam a operação</h5>
+          <p>
+            Apontamento manual + ausência de Pareto + gestão sem espelho no chão = você tem um OEE em 55%
+            que ninguém consegue subir, porque <strong>não dá para melhorar o que você não está medindo direito</strong>.
+            A proposta que conversamos resolve os três no mesmo movimento — e desbloqueia os +15 pontos de OEE
+            que valem ~R$ 19 mil/mês de margem operacional.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="cogtive-entry" id="solution">
+    <div class="section-inner">
+      <div class="section-label reveal">03 — A solução Cogtive</div>
+      <h2 class="section-title reveal reveal-delay-1">Três módulos que <span style="background:linear-gradient(135deg,var(--cogtive-blue),var(--accent-teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">resolvem as 3 dores</span> e destravam os +15pp.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Cada módulo da Cogtive ataca uma dor específica acima. Juntos formam o módulo de Gestão de Performance que estava na sua proposta.
+      </p>
+
+      <div class="modules-grid">
+        <div class="module-card reveal reveal-delay-1">
+          <div class="module-number">01</div>
+          <div class="module-icon">📊</div>
+          <div class="module-sub">Resolve a Dor 01</div>
+          <h3>OEE em Tempo Real + Apontamento Automático</h3>
+          <p>Coleta direto no equipamento. O apontamento de produção e o cronômetro de cada parada acontecem sem o operador precisar digitar nada. O OEE deixa de ser uma planilha do dia seguinte e vira um número agora.</p>
+          <div class="module-features">
+            <div class="module-feature"><span class="check">✓</span><span><strong>Apontamento automático da produção</strong> nos 4 equipamentos</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Medição de <strong>Disponibilidade</strong> sem depender de log manual</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Medição de <strong>Performance</strong> ciclo a ciclo (alvo 100 un/min)</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>OEE recalculado em tempo real — não no fechamento do turno</span></div>
+          </div>
+        </div>
+
+        <div class="module-card reveal reveal-delay-2">
+          <div class="module-number">02</div>
+          <div class="module-icon">📉</div>
+          <div class="module-sub">Resolve a Dor 02</div>
+          <h3>Pareto das Principais Ocorrências</h3>
+          <p>Cada parada é classificada automaticamente: setup, microparada, falha mecânica, falta de material, ajuste de qualidade. O Pareto sobe sozinho no painel — e a próxima ação fica óbvia.</p>
+          <div class="module-features">
+            <div class="module-feature"><span class="check">✓</span><span>Ranking das ocorrências por <strong>tempo perdido</strong> e por frequência</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Quebra por equipamento, turno e SKU</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Histórico para comparar antes / depois de cada ação</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Alvo claro: <strong>o que atacar primeiro</strong> para virar os 55% em 70%</span></div>
+          </div>
+        </div>
+
+        <div class="module-card reveal reveal-delay-3">
+          <div class="module-number">03</div>
+          <div class="module-icon">📺</div>
+          <div class="module-sub">Resolve a Dor 03</div>
+          <h3>Gestão à Vista</h3>
+          <p>Telão no chão de fábrica + painel para a gestão. Meta, real, ritmo, principais paradas — todo mundo vê o mesmo número, ao vivo. O operador corrige o ritmo na hora, sem esperar reunião de turno.</p>
+          <div class="module-features">
+            <div class="module-feature"><span class="check">✓</span><span>Telão por equipamento e telão consolidado da operação</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Meta × Real do turno, com alerta visual quando descola</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Mesmas telas no escritório: gestão decide com o mesmo dado</span></div>
+            <div class="module-feature"><span class="check">✓</span><span>Ciclo de melhoria reduzido de dias para minutos</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAINEL COMPLETO (Torre) -->
+  <section class="tower-section" id="tower">
+    <div class="section-inner">
+      <div class="section-label reveal">04 — Painel completo em ação</div>
+      <h2 class="section-title reveal reveal-delay-1">Os 4 equipamentos, 1 painel. Tudo numa tela só.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Esta é a leitura ao vivo da Hygieline como ela apareceria na Cogtive: os 4 equipamentos lado a lado,
+        com status real, OEE e Ordem de Produção em execução. O painel que substitui qualquer planilha de acompanhamento.
+      </p>
+
+      <div class="tower-mockup reveal reveal-delay-3" style="padding: 0; overflow: hidden;">
+        <img src="dashboard-principal.png" alt="Painel completo Cogtive — Dashboard Principal" style="display:block; width:100%; height:auto;"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline-section">
+    <div class="section-inner">
+      <div class="section-label reveal">05 — Drill-down minuto a minuto</div>
+      <h2 class="section-title reveal reveal-delay-1">Clica em um equipamento e vê o turno inteiro.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Selecionando um equipamento no painel, você vê o turno completo dele — com cada evento classificado e cronometrado.
+        Exemplo abaixo: os 4 equipamentos da Hygieline ao longo de um turno de 12h.
+      </p>
+      <div class="timeline-detail reveal reveal-delay-3">
+        <div class="timeline-visual" id="timelineVisual">
+          <div class="timeline-header">
+            <h4>Turno 06:00 às 18:00 · Hygieline</h4>
+            <div class="timeline-legend">
+              <div class="timeline-legend-item"><span class="timeline-legend-dot" style="background:var(--accent-green)"></span>Produzindo</div>
+              <div class="timeline-legend-item"><span class="timeline-legend-dot" style="background:var(--accent-orange)"></span>Setup</div>
+              <div class="timeline-legend-item"><span class="timeline-legend-dot" style="background:var(--accent-purple)"></span>Microparada</div>
+              <div class="timeline-legend-item"><span class="timeline-legend-dot" style="background:var(--accent-red)"></span>Parada</div>
+            </div>
+          </div>
+          <div class="timeline-bars">
+            <div class="timeline-row"><div class="timeline-row-label">EQP-01</div><div class="timeline-row-bar"><div class="tl-segment tl-producing" data-width="26">3h</div><div class="tl-segment tl-setup" data-width="6">SETUP</div><div class="tl-segment tl-producing" data-width="22">2.5h</div><div class="tl-segment tl-micro" data-width="4"></div><div class="tl-segment tl-producing" data-width="20">2h</div><div class="tl-segment tl-stopped" data-width="4">PRD</div><div class="tl-segment tl-producing" data-width="18">resto</div></div></div>
+            <div class="timeline-row"><div class="timeline-row-label">EQP-02</div><div class="timeline-row-bar"><div class="tl-segment tl-producing" data-width="28">3.5h</div><div class="tl-segment tl-micro" data-width="5"></div><div class="tl-segment tl-producing" data-width="22">2.5h</div><div class="tl-segment tl-setup" data-width="8">SETUP</div><div class="tl-segment tl-producing" data-width="20">2h</div><div class="tl-segment tl-micro" data-width="3"></div><div class="tl-segment tl-producing" data-width="14">resto</div></div></div>
+            <div class="timeline-row"><div class="timeline-row-label">EQP-03</div><div class="timeline-row-bar"><div class="tl-segment tl-producing" data-width="20">2.5h</div><div class="tl-segment tl-stopped" data-width="7">FALHA</div><div class="tl-segment tl-producing" data-width="22">3h</div><div class="tl-segment tl-setup" data-width="6">SETUP</div><div class="tl-segment tl-producing" data-width="22">2.5h</div><div class="tl-segment tl-micro" data-width="3"></div><div class="tl-segment tl-producing" data-width="20">resto</div></div></div>
+            <div class="timeline-row"><div class="timeline-row-label">EQP-04</div><div class="timeline-row-bar"><div class="tl-segment tl-producing" data-width="30">4h</div><div class="tl-segment tl-micro" data-width="4"></div><div class="tl-segment tl-producing" data-width="20">2.5h</div><div class="tl-segment tl-setup" data-width="7">SETUP</div><div class="tl-segment tl-producing" data-width="22">3h</div><div class="tl-segment tl-stopped" data-width="3">AJ</div><div class="tl-segment tl-producing" data-width="14">resto</div></div></div>
+          </div>
+          <div class="timeline-alert">
+            <span style="font-size:1.3rem;">💡</span>
+            <div>
+              <strong>O que isso muda na Hygieline:</strong> a EQP-03 teve uma falha de 7 minutos logo no início do turno.
+              Hoje, esse evento aparece em planilha só no fechamento. Na Cogtive, o sistema classifica, cronômetra e
+              <strong>alimenta o Pareto na hora</strong> — quando a falha repetir, você já sabe que ela é a primeira a atacar.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OEE -->
+  <section id="oee-section">
+    <div class="section-inner">
+      <div class="section-label reveal">06 — OEE da Hygieline hoje</div>
+      <h2 class="section-title reveal reveal-delay-1">De <span style="color:var(--accent-orange)">55%</span> para <span style="color:var(--cogtive-blue-light)">70%</span> — onde estão os pontos.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Exemplo de como o OEE atual da Hygieline se decompõe — e o caminho realista para os +15 pontos.
+        O ganho não vem de mágica: vem de medir certo, atacar o Pareto e dar espelho para o chão de fábrica.
+      </p>
+      <div class="oee-dashboard reveal reveal-delay-3" id="oeeDashboard">
+        <div class="oee-gauge">
+          <div class="gauge-container">
+            <svg class="gauge-svg" viewBox="0 0 150 150">
+              <circle class="gauge-bg" cx="75" cy="75" r="65"/>
+              <circle class="gauge-fill" cx="75" cy="75" r="65" stroke="var(--accent-orange)" stroke-dasharray="408.41" stroke-dashoffset="408.41" data-target="122.52"/>
+            </svg>
+            <div class="gauge-value"><span class="count-up" data-target="70">0</span>%</div>
+          </div>
+          <div class="gauge-label">Disponibilidade</div>
+          <div class="gauge-sublabel">Setup + parada + microparada</div>
+        </div>
+        <div class="oee-gauge">
+          <div class="gauge-container">
+            <svg class="gauge-svg" viewBox="0 0 150 150">
+              <circle class="gauge-bg" cx="75" cy="75" r="65"/>
+              <circle class="gauge-fill" cx="75" cy="75" r="65" stroke="var(--accent-teal)" stroke-dasharray="408.41" stroke-dashoffset="408.41" data-target="81.68"/>
+            </svg>
+            <div class="gauge-value"><span class="count-up" data-target="80">0</span>%</div>
+          </div>
+          <div class="gauge-label">Performance</div>
+          <div class="gauge-sublabel">Ciclo real ÷ ciclo ideal (100 un/min)</div>
+        </div>
+        <div class="oee-gauge">
+          <div class="gauge-container">
+            <svg class="gauge-svg" viewBox="0 0 150 150">
+              <circle class="gauge-bg" cx="75" cy="75" r="65"/>
+              <circle class="gauge-fill" cx="75" cy="75" r="65" stroke="var(--accent-green)" stroke-dasharray="408.41" stroke-dashoffset="408.41" data-target="8.17"/>
+            </svg>
+            <div class="gauge-value"><span class="count-up" data-target="98">0</span>%</div>
+          </div>
+          <div class="gauge-label">Qualidade</div>
+          <div class="gauge-sublabel">Peças conformes ÷ total</div>
+        </div>
+      </div>
+      <div class="oee-formula reveal reveal-delay-4">
+        <span class="eq">OEE Hygieline hoje = 70% × 80% × 98% ≈ <span style="color:var(--accent-orange);">55%</span></span>
+        <br/><span style="color:var(--cogtive-blue-light);">Meta com Cogtive: 85% × 85% × 97% ≈ 70%</span>
+        &nbsp;·&nbsp; Média do setor ≈ 60% &nbsp;·&nbsp; World Class: 85%
+        <br/><span style="color:var(--accent-green);font-size:0.95em;">▲ +15 pp = +10.800 un/dia × R$ 0,08 = +R$ 864/dia ≈ +R$ 19 mil/mês</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTROS PRODUTOS -->
+  <section class="aivision-section" id="aivision">
+    <div class="section-inner">
+      <div class="av-pill reveal">● Outros produtos Cogtive</div>
+      <h2 class="section-title reveal reveal-delay-1">Além do core: <span style="color:var(--accent-purple)">AI Vision</span> e <span style="color:var(--accent-teal)">Taelor</span>.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Samuel, depois que a Fase 1 estabilizar o OEE da Hygieline, dois módulos extras encaixam naturalmente:
+        AI Vision nos postos de inspeção e embalamento manual, e Taelor para perguntas rápidas sobre a operação em linguagem natural.
+      </p>
+
+      <div class="av-grid">
+        <div class="av-photo-wrap reveal reveal-delay-1">
+          <span class="av-tag" style="background:rgba(139,92,246,0.9);">AI Vision</span>
+          <img src="AI-Vision-Exemplo-1.png" alt="AI Vision — Posto de Trabalho"/>
+          <div class="av-caption">
+            <h5>Visão por estação de trabalho</h5>
+            <p>Câmeras identificam o posto em atividade — útil em pontos de inspeção visual e embalamento manual da linha de higiene infantil. Sem reconhecimento facial: monitora a estação, não a pessoa.</p>
+          </div>
+        </div>
+        <div class="av-photo-wrap reveal reveal-delay-2">
+          <span class="av-tag" style="background:rgba(20,184,166,0.9);">Taelor</span>
+          <img src="taelor.png" alt="Taelor — Decisões por IA"/>
+          <div class="av-caption">
+            <h5>Decisões operacionais por IA</h5>
+            <p>Pergunte em linguagem natural: "vou bater a demanda da semana?", "qual EQP puxou pra trás ontem?". O Taelor analisa o OEE em tempo real e responde com diagnóstico e sugestão de ação.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="av-rule reveal reveal-delay-3">
+        <div class="av-rule-icon">💡</div>
+        <div>
+          <h5>ROTEIRO SUGERIDO PARA A HYGIELINE</h5>
+          <p>
+            <strong>Fase 1:</strong> OEE + Apontamento Automático + Pareto + Gestão à Vista — destrava os +15 pp e
+            paga a operação no primeiro mês. <strong>Fase 2:</strong> AI Vision nos postos manuais de inspeção e embalagem.
+            <strong>Fase 3:</strong> Taelor para perguntar à operação em linguagem natural. Cada fase paga a próxima.
+          </p>
+        </div>
+      </div>
+
+      <div class="av-capabilities">
+        <div class="av-cap reveal reveal-delay-1">
+          <div class="cap-icon">📸</div>
+          <h6>AI Vision — Posto Automático</h6>
+          <p>Indicadores de produtividade por estação. Tempo ocioso por posto. Sem reconhecimento facial. Útil em pontos de inspeção visual e embalamento manual.</p>
+        </div>
+        <div class="av-cap reveal reveal-delay-2">
+          <div class="cap-icon">🤖</div>
+          <h6>Taelor — IA Operacional</h6>
+          <p>Pergunta em linguagem natural sobre OEE, OPs, gargalos e Pareto. Resposta com diagnóstico e plano de ação. Conversa direto com o dado de chão.</p>
+        </div>
+        <div class="av-cap reveal reveal-delay-3">
+          <div class="cap-icon">🔗</div>
+          <h6>Plataforma única</h6>
+          <p>OEE, Pareto, Gestão à Vista, AI Vision e Taelor: tudo no mesmo painel. Sem migrar de tela. Sem BI separado. Sem dado órfão.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROI -->
+  <section class="roi-section" id="roi">
+    <div class="section-inner">
+      <div class="section-label reveal">07 — Retorno em R$</div>
+      <h2 class="section-title reveal reveal-delay-1">+15 pontos de OEE = <span style="color:var(--accent-green)">R$ 19 mil/mês</span> no caixa.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        Samuel, abaixo está o cálculo que já desenhamos junto — com os números que você mesmo nos passou.
+        É um cenário conservador: margem de apenas R$ 0,08 por unidade e 22 dias úteis no mês.
+      </p>
+
+      <div class="roi-grid">
+        <div class="roi-pillars">
+          <div class="roi-pillar reveal reveal-delay-1">
+            <div class="p-icon">⚙️</div>
+            <div><h5>Cenário atual</h5><p>4 equipamentos · 100 un/min nominal · 12 h/dia · OEE 55% → <strong>39.600 un/dia</strong> (100 × 60 × 12 × 0,55).</p></div>
+          </div>
+          <div class="roi-pillar reveal reveal-delay-2">
+            <div class="p-icon">📈</div>
+            <div><h5>Cenário projetado com Cogtive</h5><p>Mesmo equipamento, mesma janela, OEE 70% → <strong>50.400 un/dia</strong> (100 × 60 × 12 × 0,70).</p></div>
+          </div>
+          <div class="roi-pillar reveal reveal-delay-3">
+            <div class="p-icon">➕</div>
+            <div><h5>Ganho de capacidade</h5><p>50.400 − 39.600 = <strong>+10.800 unidades/dia</strong>. Sem investir em mais máquina, sem alongar turno.</p></div>
+          </div>
+          <div class="roi-pillar reveal reveal-delay-4">
+            <div class="p-icon">💰</div>
+            <div><h5>Tradução em R$</h5><p>10.800 × R$ 0,08 de margem = <strong>R$ 864/dia</strong>. Margem real costuma ser maior — esse é o piso.</p></div>
+          </div>
+          <div class="roi-pillar reveal reveal-delay-5">
+            <div class="p-icon">📅</div>
+            <div><h5>Acumulado mensal</h5><p>R$ 864 × 22 dias úteis ≈ <strong>R$ 19.008/mês</strong>. Só com os 15 pontos previstos — antes de AI Vision e Taelor.</p></div>
+          </div>
+        </div>
+
+        <div class="roi-total reveal reveal-delay-2">
+          <div class="r-label">Resultado Esperado · Hygieline</div>
+          <div class="r-headline">+15 pp de OEE em 4–6 meses</div>
+          <div style="margin: 1.5rem 0; padding: 1.2rem; background: rgba(255,255,255,0.04); border-radius: 12px; text-align: left;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;font-size:0.85rem;color:var(--text-secondary);">
+              <span>Equipamentos monitorados</span><span style="color:var(--text-primary);font-weight:600;">4</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;font-size:0.85rem;color:var(--text-secondary);">
+              <span>OEE atual → projetado</span><span style="color:var(--text-primary);font-weight:600;">55% → 70%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.6rem;font-size:0.85rem;color:var(--text-secondary);">
+              <span>Ganho de capacidade</span><span style="color:var(--accent-green);font-weight:700;">+10.800 un/dia</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:var(--text-secondary);">
+              <span>Ganho financeiro/dia</span><span style="color:var(--accent-green);font-weight:700;">R$ 864</span>
+            </div>
+          </div>
+          <div class="r-result">≈ R$ 19 mil / mês</div>
+          <p class="r-note">
+            Cálculo conservador a R$ 0,08 de margem por unidade. Sem contar redução de retrabalho, queda de microparada e
+            ganho de eficiência de gestão — que aparecem no dia 1.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="section-inner">
+      <div class="section-label reveal">08 — Jornada de implementação</div>
+      <h2 class="section-title reveal reveal-delay-1">Quatro fases — sem parar um único equipamento.</h2>
+      <p class="section-desc reveal reveal-delay-2">
+        A Cogtive entra em paralelo. A Hygieline continua operando — e a partir da Fase 03 você já tem
+        o painel completo, o Pareto e a gestão à vista no ar.
+      </p>
+      <div class="journey-steps">
+        <div class="journey-step reveal reveal-delay-1">
+          <div class="journey-step-number">FASE 01</div>
+          <h4>Diagnóstico</h4>
+          <span class="time-badge">1–2 semanas</span>
+          <p>Visita técnica ao Gemba. Mapeamento dos 4 equipamentos, definição dos sinais de coleta, validação dos eventos de parada e desenho do painel da Hygieline.</p>
+          <div class="journey-arrow">→</div>
+        </div>
+        <div class="journey-step reveal reveal-delay-2">
+          <div class="journey-step-number">FASE 02</div>
+          <h4>Implementação</h4>
+          <span class="time-badge">3–6 semanas</span>
+          <p>Instalação dos coletores Cogtive nos 4 equipamentos. Apontamento automático em produção. Configuração do Pareto, da Gestão à Vista e treinamento do time.</p>
+          <div class="journey-arrow">→</div>
+        </div>
+        <div class="journey-step reveal reveal-delay-3">
+          <div class="journey-step-number">FASE 03</div>
+          <h4>Go-live + Ajuste</h4>
+          <span class="time-badge">2–4 semanas</span>
+          <p>Painel completo no ar. Validação dos eventos, ajuste de metas por equipamento/SKU, primeiros diagnósticos do Pareto. Operação assistida pelo time Cogtive.</p>
+          <div class="journey-arrow">→</div>
+        </div>
+        <div class="journey-step reveal reveal-delay-4">
+          <div class="journey-step-number">FASE 04</div>
+          <h4>Ciclo contínuo</h4>
+          <span class="time-badge">On-going</span>
+          <p>OEE subindo turno a turno em direção aos 70%. Plataforma cresce com a operação — AI Vision e Taelor disponíveis quando fizer sentido para a Hygieline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="cta">
+    <div class="cta-inner">
+      <div class="section-label reveal" style="justify-content:center;">PRÓXIMO PASSO</div>
+      <h2 class="reveal reveal-delay-1">Vamos retomar — e fazer o <span class="highlight">diagnóstico real</span>.</h2>
+      <p class="reveal reveal-delay-2">
+        Samuel, a proposta segue de pé. Quando puder, fala direto com o Leonardo pelo WhatsApp para a gente
+        agendar a visita técnica nos 4 equipamentos e desenhar o painel da Hygieline com números reais — para
+        garantir que os +15 pp saiam do papel.
+      </p>
+      <a href="https://wa.me/5511936191345?text=Oi%20Leonardo%2C%20vim%20da%20apresenta%C3%A7%C3%A3o%20Cogtive%20para%20a%20Hygieline%20e%20quero%20retomar%20o%20diagn%C3%B3stico." class="cta-button reveal reveal-delay-3" target="_blank" rel="noopener">
+        <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Falar com Leonardo no WhatsApp
+      </a>
+      <div class="cta-logos reveal reveal-delay-4">
+        <img class="logo-cogtive" src="Cogtive_Logo_Off_White.png" alt="Cogtive"/>
+        <span class="logo-x">×</span>
+        <div class="logo-client-wrap">
+          <img src="hygieline.png" alt="Hygieline"/>
+        </div>
+      </div>
+      <div class="cta-sig reveal reveal-delay-5">Apresentação preparada para Samuel · Hygieline · Maio 2026</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const AUTH = {
+  authorizedEmail: 'samuel@hygieline.com.br',
+  defaultPassword: 'Cogtive123',
+  masterPassword: 'Cog2026',
+  storageKey: 'cogtive_hygieline_pwd_v1',
+  sessionKey: 'cogtive_hygieline_auth_v1'
+};
+
+function getCurrentPassword() { try { const s = localStorage.getItem(AUTH.storageKey); return s || AUTH.defaultPassword; } catch(e) { return AUTH.defaultPassword; } }
+function setCurrentPassword(p) { try { localStorage.setItem(AUTH.storageKey, p); } catch(e) {} }
+function resetPassword() { try { localStorage.removeItem(AUTH.storageKey); } catch(e) {} }
+function isAlreadyAuthed() { try { return sessionStorage.getItem(AUTH.sessionKey) === '1'; } catch(e) { return false; } }
+function markAuthed() { try { sessionStorage.setItem(AUTH.sessionKey, '1'); } catch(e) {} }
+
+function logoutLead() {
+  try { sessionStorage.removeItem(AUTH.sessionKey); } catch(e) {}
+  document.getElementById('loginOverlay').style.display = 'flex';
+  document.getElementById('app').classList.add('hidden');
+  document.body.classList.add('locked');
+}
+
+function revealApp() {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('app').classList.remove('hidden');
+  document.body.classList.remove('locked');
+  markAuthed();
+  initAnimations();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (isAlreadyAuthed()) revealApp(); else document.body.classList.add('locked');
+
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const pwd = document.getElementById('loginPassword').value;
+    const errEl = document.getElementById('loginError');
+    errEl.textContent = '';
+    if (email !== AUTH.authorizedEmail.toLowerCase()) { errEl.textContent = '✕ E-mail não autorizado.'; return; }
+    if (pwd !== getCurrentPassword()) { errEl.textContent = '✕ Senha incorreta.'; return; }
+    revealApp();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) { e.preventDefault(); openAdmin(); }
+    if (e.key === 'Escape') { const ov = document.getElementById('adminOverlay'); if (ov.classList.contains('visible')) closeAdmin(); }
+  });
+
+  document.getElementById('adminClose').addEventListener('click', closeAdmin);
+  document.getElementById('adminUnlock').addEventListener('click', tryUnlockAdmin);
+  document.getElementById('adminMaster').addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlockAdmin(); });
+  document.getElementById('adminSavePwd').addEventListener('click', saveLeadPwd);
+  document.getElementById('adminNewPwd').addEventListener('keydown', (e) => { if (e.key === 'Enter') saveLeadPwd(); });
+  document.getElementById('adminReset').addEventListener('click', () => { resetPassword(); updateAdminDisplay(); setAdminStatus('Senha resetada.', 'ok'); });
+  document.getElementById('adminReveal').addEventListener('click', () => { document.getElementById('adminCurrentPwd').textContent = getCurrentPassword(); });
+  document.getElementById('adminLogout').addEventListener('click', () => { logoutLead(); closeAdmin(); });
+});
+
+function openAdmin() {
+  const ov = document.getElementById('adminOverlay');
+  ov.classList.add('visible');
+  document.getElementById('adminGate').style.display = '';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('adminMaster').value = '';
+  document.getElementById('adminGateStatus').textContent = '';
+  setTimeout(() => document.getElementById('adminMaster').focus(), 50);
+}
+function closeAdmin() { document.getElementById('adminOverlay').classList.remove('visible'); }
+function tryUnlockAdmin() {
+  const v = document.getElementById('adminMaster').value;
+  const status = document.getElementById('adminGateStatus');
+  if (v === AUTH.masterPassword) { document.getElementById('adminGate').style.display = 'none'; document.getElementById('adminPanel').style.display = ''; updateAdminDisplay(); status.textContent = ''; }
+  else { status.textContent = '✕ Master password incorreta.'; }
+}
+function updateAdminDisplay() { document.getElementById('adminCurrentPwd').textContent = '••••••••'; document.getElementById('adminNewPwd').value = ''; }
+function setAdminStatus(msg, kind) { const s = document.getElementById('adminStatus'); s.textContent = msg; s.className = 'admin-status ' + (kind || ''); }
+function saveLeadPwd() {
+  const v = document.getElementById('adminNewPwd').value.trim();
+  if (v.length < 4) { setAdminStatus('✕ Mínimo 4 caracteres.', 'err'); return; }
+  setCurrentPassword(v); updateAdminDisplay(); setAdminStatus('✓ Senha atualizada.', 'ok');
+}
+
+// ANIMATIONS
+let animationsStarted = false;
+function initAnimations() {
+  if (animationsStarted) return;
+  animationsStarted = true;
+
+  const particlesEl = document.getElementById('particles');
+  if (particlesEl && particlesEl.childElementCount === 0) {
+    for (let i = 0; i < 34; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (10 + Math.random() * 14) + 's';
+      p.style.animationDelay = (Math.random() * 15) + 's';
+      const sz = 1 + Math.random() * 2.5;
+      p.style.width = sz + 'px'; p.style.height = sz + 'px';
+      particlesEl.appendChild(p);
+    }
+  }
+
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }, { passive: true });
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); revealObserver.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        const target = parseFloat(entry.target.dataset.target);
+        const isFloat = target % 1 !== 0;
+        const duration = 1800;
+        const start = performance.now();
+        (function update(now) {
+          const elapsed = (now || performance.now()) - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          const current = eased * target;
+          entry.target.textContent = isFloat ? current.toFixed(1) : Math.round(current);
+          if (progress < 1) requestAnimationFrame(update);
+        })();
+        countObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+  const flowContainer = document.getElementById('flowContainer');
+  if (flowContainer) {
+    new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.flow-step').forEach(step => {
+            const delay = parseInt(step.dataset.delay || 0);
+            setTimeout(() => step.classList.add('active'), delay);
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 }).observe(flowContainer);
+  }
+
+  const timelineVisual = document.getElementById('timelineVisual');
+  if (timelineVisual) {
+    new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.tl-segment').forEach((seg, i) => {
+            setTimeout(() => { seg.style.width = seg.dataset.width + '%'; }, i * 60);
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 }).observe(timelineVisual);
+  }
+
+  const oeeDash = document.getElementById('oeeDashboard');
+  if (oeeDash) {
+    new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.gauge-fill').forEach(fill => {
+            setTimeout(() => { fill.style.strokeDashoffset = fill.dataset.target; }, 250);
+          });
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 }).observe(oeeDash);
+  }
+}
+</script>
+</body>
+</html>
